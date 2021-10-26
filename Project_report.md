@@ -64,6 +64,7 @@ The ddpg agent is then traimed for 200 episodes until the performance threshold 
 
 ## Performance for DDPG Agent.
 Environment was solved in 106 episodes. Average score: 30.019
+![alt text](https://github.com/Jaydeemourg/DeepRL_Continuous_Control/blob/main/score_per_episode_plot.png)
 
 ## Future Improvements 
 - **Add prioritized experience replay**  Rather than selecting experience tuples randomly, prioritized replay selects experiences based on a priority value that is correlated with the magnitude of error. This can improve learning by increasing the probability that rare and important experience vectors are sampled.
