@@ -28,11 +28,6 @@ this algorithm consists of two networks;
 - an Actor that controls how the agent behaves using policy-based method.  The policy is optimized without using a value function. This is useful when the action space is continuous or stochastic.
 
 an update is made at each step using TD Learning, this is done without waiting until the end of the episode. The Critic observes the agent's action and provides feedback in order to update the policy and be better at playing that game.
-
-**Batch Normalization**
-This is a technique for training very deep neural networks that standardizes the inputs to a layer for each mini-batch. This has the effect of stabilizing the learning process and dramatically reducing the number of training epochs required to train deep networks.
- 
-Similar to the exploding gradient issue mentioned above, running computations on large input values and model parameters can inhibit learning. Batch normalization addresses this problem by scaling the features to be within the same range throughout the model and across different environments and units. In additional to normalizing each dimension to have unit mean and variance, the range of values is often much smaller, typically between 0 and 1. We implementeed on first layer of fully connected layers of both actor and critic models
     
     
 **Experience Replay**
@@ -41,23 +36,6 @@ Experience replay allows the RL agent to learn from past experience.
 As with DQN in the previous project, DDPG also utilizes a replay buffer to gather experiences from each agent. Each experience is stored in a replay buffer as the agent interacts with the environment. 
 
 The replay buffer contains a collection of experience tuples with the state, action, reward, and next state (s, a, r, s'). Each agent samples from this buffer as part of the learning step. Experiences are sampled randomly, so that the data is uncorrelated. This prevents action values from oscillating or diverging catastrophically, since a naive algorithm could otherwise become biased by correlations between sequential experience tuples.
-
-**Hyperparameters** 
-
- Parameters | Value | Description
------------ | ----- | -----------
-BUFFER_SIZE | int(1e6) | replay buffer size
-BATCH_SIZE | 128 | minibatch size
-GAMMA | 0.99 | discount factor
-TAU | 1e-3 | for soft update of target parameters
-LR_ACTOR | 1e-3 | learning rate of the actor
-LR_CRITIC | 1e-3 | learning rate of the critic
-WEIGHT_DECAY | 0 | L2 weight decay
-NUM_AGENTS | 1 | Number of agents
-fc1_units | 400 | Number of nodes in first hidden layer for actor
-fc2_units | 300 | Number of nodes in second hidden layer for actor
-fc1_units |400 | Number of nodes in first hidden layer for critic
-fc2_units | 300 | Number of nodes in second hidden layer for critic
 
 #### Network architecture
 
@@ -68,6 +46,23 @@ The Actor Network receives as input 33 variables representing the state size, wi
 The Critic Network receives as input 33 variables representing the observation space , also with two hidden layers each with 256 and 128 nodes.
 The output of this network is the prediction of the target value based on the given state and the estimated best action.
 That means the Critic calculates the optimal action-value function Q(s, a) by using the Actor's best-believed action.
+
+**Hyperparameters** 
+
+ Parameters | Value | Description
+----------- | ----- | -----------
+BUFFER_SIZE | int(1e5) | replay buffer size
+BATCH_SIZE | 128 | minibatch size
+GAMMA | 0.99 | discount factor
+TAU | 1e-3 | for soft update of target parameters
+LR_ACTOR | 1e-4 | learning rate of the actor
+LR_CRITIC | 1e-4 | learning rate of the critic
+WEIGHT_DECAY | 0 | L2 weight decay
+NUM_AGENTS | 20 | Number of agents
+fc1_units | 256 | Number of nodes in first hidden layer for actor
+fc2_units | 128 | Number of nodes in second hidden layer for actor
+fc1_units |256 | Number of nodes in first hidden layer for critic
+fc2_units | 128 | Number of nodes in second hidden layer for critic
 
 #### Train the agent 
 The ddpg agent is then traimed for 200 episodes until the performance threshold is realized.  
