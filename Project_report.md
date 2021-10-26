@@ -39,7 +39,7 @@ The replay buffer contains a collection of experience tuples with the state, act
 
 #### Network architecture
 
-Two deep neural networks cpmprising of Actor Critic models are used;
+Two deep neural networks comprising of Actor Critic models are used;
 
 The Actor Network receives as input 33 variables representing the state size, with two hidden layers each with 256 and 128 nodes. i used ReLU activation functions on the hidden layers and tanh on the output layers and generate output of 4 numbers representing the predicted best action for that observed state. That means, the Actor is used to approximate the optimal policy π deterministically.
 
