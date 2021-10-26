@@ -59,6 +59,16 @@ fc2_units | 300 | Number of nodes in second hidden layer for actor
 fc1_units |400 | Number of nodes in first hidden layer for critic
 fc2_units | 300 | Number of nodes in second hidden layer for critic
 
+#### Network architecture
+
+Two deep neural networks cpmprising of Actor Critic models are used;
+
+The Actor Network receives as input 33 variables representing the state size, with two hidden layers each with 256 and 128 nodes. i used ReLU activation functions on the hidden layers and tanh on the output layers and generate output of 4 numbers representing the predicted best action for that observed state. That means, the Actor is used to approximate the optimal policy π deterministically.
+
+The Critic Network receives as input 33 variables representing the observation space , also with two hidden layers each with 256 and 128 nodes.
+The output of this network is the prediction of the target value based on the given state and the estimated best action.
+That means the Critic calculates the optimal action-value function Q(s, a) by using the Actor's best-believed action.
+
 #### Train the agent 
 The ddpg agent is then traimed for 200 episodes until the performance threshold is realized.  
 
